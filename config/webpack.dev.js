@@ -5,6 +5,8 @@ const hostip = Object.values(require("os").networkInterfaces())
         .flat()
         .filter((item) => !item.internal && item.family === "IPv4")
         .find(Boolean).address;
+
+const HOST_IP = process.env.HOST_IP?process.env.HOST_IP:hostip;         
 const devConfig = {
     mode: 'development',
     devServer: {
@@ -18,7 +20,7 @@ const devConfig = {
         new ModuleFederationPlugin({
             name: 'container',
             remotes: {
-                marketing: 'marketing@http://' + hostip + ':8081/remoteEntry.js'
+                marketing: 'marketing@http://' + HOST_IP + ':8081/remoteEntry.js'
             },
             shared: ['react', 'react-dom'],
 
