@@ -20,8 +20,16 @@ sudo docker build -f ./Dockerfile.dev -t mfp-container-image .
 To start a development container, please run
 
 ```
-sudo docker container run -d -p 8080:8080 --name mfp-container mfp-container-image
+sudo docker container run -d -e HOST_IP=192.168.0.12 -p 8080:8080 --name mfp-container mfp-container-image
 ```
+Please correct the value for the HOST_IP to your host ip.
+
+To start a prod container, please run
+
+```
+sudo docker container run -d -e HOST_IP=192.168.0.12 -p 8080:80 --name mfp-container mfp-container-image
+```
+Please correct the value for the HOST_IP to your host ip.
 
 To bash into to the container, please use
 

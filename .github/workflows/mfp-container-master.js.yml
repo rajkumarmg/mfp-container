@@ -5,7 +5,7 @@ name: react-client-master CI and CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master- ]
 
 jobs:
   build:
