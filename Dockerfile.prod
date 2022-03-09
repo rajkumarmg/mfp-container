@@ -6,4 +6,4 @@ COPY . .
 RUN npm run build
 
 FROM nginx
-COPY --from=container-dist /app/dist /user/share/nginx/html 
+COPY --from=container-dist /app/dist /usr/share/nginx/html 
