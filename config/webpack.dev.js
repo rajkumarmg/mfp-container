@@ -9,6 +9,9 @@ const hostip = Object.values(require("os").networkInterfaces())
 const HOST_IP = process.env.HOST_IP?process.env.HOST_IP:hostip;         
 const devConfig = {
     mode: 'development',
+    output: {
+        publicPath: 'http://' + HOST_IP + ':8080/',
+    },
     devServer: {
         port: 8080,
         host: '0.0.0.0',
@@ -20,7 +23,8 @@ const devConfig = {
         new ModuleFederationPlugin({
             name: 'container',
             remotes: {
-                marketing: 'marketing@http://' + HOST_IP + ':8081/remoteEntry.js'
+                marketing: 'marketing@http://' + HOST_IP + ':8081/remoteEntry.js',
+                auth: 'auth@http://' + HOST_IP + ':8082/remoteEntry.js'
             },
             shared: ['react', 'react-dom'],
 
