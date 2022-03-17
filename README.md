@@ -7,7 +7,7 @@ Assuming you already have nodejs installed. Also the mfp-dashboard, mfp-marketin
 Run the following command one by one.
 ```
 git clone https://github.com/rajkumarmg/mfp-container.git
-cd mfp-dashboard
+cd mfp-container
 npm i
 npm start
 ```
