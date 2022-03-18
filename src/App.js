@@ -34,7 +34,11 @@ export default () => {
                     <Suspense fallback={<Progress />}>
                         <Switch>
                             <Route path="/auth">
-                                <AuthLazy onSignIn={() => setSignedIn(true)} />
+                                <AuthLazy onSignIn={(data) => {
+                                    console.log(data.access_token);
+                                    localStorage.setItem("ipss_access_token", data.access_token);
+                                    setSignedIn(true);
+                                }} />
                             </Route>
                             <Route path="/dashboard">
                                 {!isSignedIn && <Redirect to="/"/>}
