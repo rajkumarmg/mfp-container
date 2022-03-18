@@ -12,9 +12,11 @@ const prodConfig = {
         new ModuleFederationPlugin({
             name: 'container',
             remotes: {
-                marketing: `marketing@${domain}/marketing/remoteEntry.js`,
+                // marketing: `marketing@${domain}/marketing/remoteEntry.js`,
                 auth: `auth@${domain}/auth/remoteEntry.js`,
-                dashboard: `dashboarrd@${domain}/dashboard/remoteEntry.js`
+                // dashboard: `dashboarrd@${domain}/dashboard/remoteEntry.js`,
+                user: `user@${domain}/user/remoteEntry.js`,
+
             },
             shared: ['react', 'react-dom'],
         })

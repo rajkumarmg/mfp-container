@@ -6,9 +6,10 @@ import {createBrowserHistory} from 'history';
 import Progress from './components/Progress';
 import Header from './components/Header';
 
-const MarketingLazy = lazy(() => import('./components/MarketingApp'));
+// const MarketingLazy = lazy(() => import('./components/MarketingApp'));
 const AuthLazy = lazy(() => import('./components/AuthApp'));
-const DashboardLazy = lazy(() => import('./components/DashboardApp'));
+// const DashboardLazy = lazy(() => import('./components/DashboardApp'));
+const UserLazy = lazy(() => import('./components/UserApp'));
 
 const generateClassName = createGenerateClassName({
     productionPrefix: 'co',
@@ -20,7 +21,7 @@ export default () => {
     const [isSignedIn, setSignedIn] = useState(false);
     useEffect(() => {
         if(isSignedIn) {
-            history.push('/dashboard');
+            history.push('/user');
         }
     }, [isSignedIn]);
     return (
@@ -29,6 +30,7 @@ export default () => {
             <StylesProvider generateClassName={generateClassName}>
                 <div>
                     <Header onSignOut={() => {
+                        localStorage.clear();
                         setSignedIn(false)
                     }} isSignedIn={isSignedIn} />
                     <Suspense fallback={<Progress />}>
@@ -40,13 +42,17 @@ export default () => {
                                     setSignedIn(true);
                                 }} />
                             </Route>
-                            <Route path="/dashboard">
+                            <Route path="/user">
                                 {!isSignedIn && <Redirect to="/"/>}
-                                <DashboardLazy  />
+                                <UserLazy  />
                             </Route>
                             
                             <Route path="/">
-                                <MarketingLazy />
+                                <AuthLazy onSignIn={(data) => {
+                                    console.log(data.access_token);
+                                    localStorage.setItem("ipss_access_token", data.access_token);
+                                    setSignedIn(true);
+                                }}/>
                             </Route>
                         </Switch>
                     </Suspense>

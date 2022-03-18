@@ -23,9 +23,10 @@ const devConfig = {
         new ModuleFederationPlugin({
             name: 'container',
             remotes: {
-                marketing: 'marketing@http://' + HOST_IP + ':8081/remoteEntry.js',
+                // marketing: 'marketing@http://' + HOST_IP + ':8081/remoteEntry.js',
                 auth: 'auth@http://' + HOST_IP + ':8082/remoteEntry.js',
-                dashboard: 'dashboard@http://' + HOST_IP + ':8083/remoteEntry.js'
+                // dashboard: 'dashboard@http://' + HOST_IP + ':8083/remoteEntry.js',
+                user: 'user@http://' + HOST_IP + ':8084/remoteEntry.js'
             },
             shared: ['react', 'react-dom'],
 
